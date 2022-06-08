@@ -54,7 +54,7 @@ const usuariosPut = async (req, res = response) => {
 
 const usuariosPost = async (req, res = response) => {
 
-    //almaceno todo lo que venga en body (tambien se puede desestructurar y almacenar solo lo que yo quiera)
+   
     const { nombre, correo, password, rol } = req.body;
     const usuario = new Usuario({ nombre, correo, password, rol }); //todos los argumentos que se reciben en el body se los envia al modelo de usuario
 
@@ -75,11 +75,13 @@ const usuariosPost = async (req, res = response) => {
 const usuariosDelete = async(req, res = response) => {
 
     const {id} = req.params;
-
+   
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
+    const usuarioAutenticado = req.usuario; 
 
     res.json({
-       usuario
+       usuario,
+       usuarioAutenticado
     });
 }
 

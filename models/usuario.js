@@ -43,10 +43,12 @@ const UsuarioSchema = Schema({
 });
 
 //Tiene que ser una funcion normal porque se usara el objeto this y la funcion de flecha mantiene a lo que apunta el this fuera de la misma
-UsuarioSchema.methods.toJSON =  function(){
+UsuarioSchema.methods.toJSON = function () {
 
-    const {__v, password, ...usuario} = this.toObject(); //Estoy sacando la version y password y todo lo demas será almacenado en usuario
-    
+    const { __v, password, _id, ...usuario } = this.toObject(); //Estoy sacando la version,password y el _id y todo lo demas será almacenado en usuario
+
+    usuario.uid = _id;
+
     return usuario;
 
 }
