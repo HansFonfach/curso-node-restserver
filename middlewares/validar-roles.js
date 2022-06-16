@@ -30,7 +30,7 @@ const esAdminRole = (req, res = response, next) => {
 
 const tieneRole = (...roles) => { //Recibo los parametros y los almaceno en el argumento roles y los transforma en un array (usando el operador rest)
 
-    return (req, res = response, next) => { //retorno la funcion que se va a ejecutar en user.js(routes)
+    return (req, res = response, next) => { //retorno la funcion que se va a ejecutar en categorias.js(routes)
 
 
         if (!req.usuario) {
@@ -45,7 +45,7 @@ const tieneRole = (...roles) => { //Recibo los parametros y los almaceno en el a
 
         if (!roles.includes(req.usuario.rol)) { //si el rol no está incluido en el rol 
             return res.status(401).json({
-                msg: `El servicio requiere uno de estos roles ${roles}`
+                msg: `no tienes acceso a esta petición`
 
             });
 
